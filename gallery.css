@@ -1,0 +1,11 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+#root {
+  display: flex;
+  margin: 0 auto;
+  height: 500px;
+  background: blueviolet;
+}
