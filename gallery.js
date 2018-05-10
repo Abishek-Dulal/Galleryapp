@@ -16,7 +16,7 @@ let url=`https://api.flickr.com/services/rest/?method=flickr.photos.search&api_k
 
        return photodesc;
     });
-        console.log(Photourls[0].url);
+   return  Photourls;
 }
 
 fetchGalleryData("cat");
