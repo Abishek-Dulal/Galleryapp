@@ -12,11 +12,40 @@ let url=`https://api.flickr.com/services/rest/?method=flickr.photos.search&api_k
        let photodesc ={
          "url":url,
           title:el.title,
+          "id":el.id,
        };
 
        return photodesc;
     });
    return  Photourls;
-}
+};
 
-fetchGalleryData("cat");
+fetchGalleryData("cat").then((result)=>{
+
+   result.forEach(function(val,index,arr){
+     switch(index%4){
+       case 0:galleryImageAppend("sec1",val);
+              break;
+       case 1:galleryImageAppend("sec2",val);
+              break;
+       case 2:galleryImageAppend("sec3",val);
+              break;
+       case 3:galleryImageAppend("sec4",val);
+              break;
+     }
+   });
+
+});
+
+function  galleryImageAppend(secid,val){
+  let secdiv =document.getElementById(secid);
+  let img = document.createElement("img");
+  img.setAttribute("src",val.url);
+  img.classList.add("img-responsive");
+  img.setAttribute("id",val.id);
+  img.setAttribute("alt",val.title);
+  secdiv.append(img);
+  let span = document.createElement("span");
+  span.textContent = val.title;
+  secdiv.append(span);
+}
