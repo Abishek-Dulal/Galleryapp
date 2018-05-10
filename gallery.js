@@ -54,9 +54,10 @@ function  galleryImageAppend(secid,val){
  }
 
  let button = document.getElementById('searchBtn');
-
+ let inputbox = document.getElementById("searchBox");
  button.addEventListener('click', function (e) {
       e.preventDefault();
+      let a =inputbox.value;
       removeGalleryImages();
-      fetchGalleryData("monkey").then(updateGallerySections);
+      fetchGalleryData(a).then(updateGallerySections);
  });
