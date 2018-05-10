@@ -12,6 +12,7 @@ let url=`https://api.flickr.com/services/rest/?method=flickr.photos.search&api_k
        let photodesc ={
          "url":url,
           title:el.title,
+          "id":el.id,
        };
 
        return photodesc;
@@ -41,10 +42,10 @@ function  galleryImageAppend(secid,val){
   let img = document.createElement("img");
   img.setAttribute("src",val.url);
   img.classList.add("img-responsive");
+  img.setAttribute("id",val.id);
   img.setAttribute("alt",val.title);
   secdiv.append(img);
   let span = document.createElement("span");
   span.textContent = val.title;
   secdiv.append(span);
-
 }
