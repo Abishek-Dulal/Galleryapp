@@ -18,7 +18,7 @@ async function fetchGalleryData(text){
   return  Photourls;
 };
 
-fetchGalleryData("cat").then(updateGallerySections);
+fetchGalleryData("rainbow").then(updateGallerySections);
 
 function updateGallerySections(result){
   result.forEach(function(val,index,arr){
