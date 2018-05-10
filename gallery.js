@@ -1,9 +1,10 @@
 "use strict"
 const api_key="f2345aa7d81b85b6865bc7698d7e6f06";
 const secret="9daf2cc6e1fa4be1";
-
-async function fetchGalleryData(text){
-  let url=`https://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=${api_key}&format=json&text=${text}&page=2&per_page=20&nojsoncallback=1`;
+let currentvalue = "cat";
+let page=1;
+async function fetchGalleryData(text,page,){
+  let url=`https://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=${api_key}&format=json&text=${text}&page=${page}&per_page=50&nojsoncallback=1`;
   let res = await fetch(url);
   let json = await res.json();
   let Photourls = json.photos.photo.map(function(el,index,array){
@@ -18,7 +19,7 @@ async function fetchGalleryData(text){
   return  Photourls;
 };
 
-fetchGalleryData("cat").then(updateGallerySections);
+fetchGalleryData(currentvalue,page).then(updateGallerySections);
 
 function updateGallerySections(result){
   result.forEach(function(val,index,arr){
@@ -56,8 +57,16 @@ function  galleryImageAppend(secid,val){
  let button = document.getElementById('searchBtn');
  let inputbox = document.getElementById("searchBox");
  button.addEventListener('click', function (e) {
+   page=1;
       e.preventDefault();
-      let a =inputbox.value;
+       currentvalue =inputbox.value;
       removeGalleryImages();
-      fetchGalleryData(a).then(updateGallerySections);
+      fetchGalleryData(currentvalue,page).then(updateGallerySections);
+ });
+
+ window.addEventListener('scroll', function (e) {
+        page=page+1;
+        if((document.body.scrollHeight*3/4)<=(pageYOffset)){
+          fetchGalleryData(currentvalue,page).then(updateGallerySections);
+        }
  });
