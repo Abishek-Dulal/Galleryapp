@@ -45,8 +45,18 @@ function  galleryImageAppend(secid,val){
 }
 
  function  removeGalleryImages(){
-    const hero = document.getElementById("hero");
+    let hero = document.querySelectorAll(".hero");
+    hero[0].innerHTML=" ";
     Array.from(hero).forEach(function(el){
        el.innerHTML=" ";
+       console.log(el.innerHTML);
     });
  }
+
+ let button = document.getElementById('searchBtn');
+
+ button.addEventListener('click', function (e) {
+      e.preventDefault();
+      removeGalleryImages();
+      fetchGalleryData("monkey").then(updateGallerySections);
+ });
