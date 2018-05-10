@@ -17,6 +17,15 @@ let url=`https://api.flickr.com/services/rest/?method=flickr.photos.search&api_k
        return photodesc;
     });
    return  Photourls;
-}
+};
 
-fetchGalleryData("cat");
+let mandiv=document.getElementById("mango");
+fetchGalleryData("cat").then((result)=>{
+
+   result.forEach(function(val,index,arr){
+      let img = document.createElement("img");
+      img.setAttribute("src",val.url);
+      mandiv.append(img);
+   });
+
+});
