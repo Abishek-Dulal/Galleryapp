@@ -18,16 +18,18 @@ async function fetchGalleryData(text){
   return  Photourls;
 };
 
-fetchGalleryData("cat").then((result)=>{
-   result.forEach(function(val,index,arr){
-     switch(index%4){
-       case 0:galleryImageAppend("sec1",val); break;
-       case 1:galleryImageAppend("sec2",val); break;
-       case 2:galleryImageAppend("sec3",val); break;
-       case 3:galleryImageAppend("sec4",val); break;
-     }
-   });
-});
+fetchGalleryData("cat").then(updateGallerySections);
+
+function updateGallerySections(result){
+  result.forEach(function(val,index,arr){
+    switch(index%4){
+      case 0:galleryImageAppend("sec1",val); break;
+      case 1:galleryImageAppend("sec2",val); break;
+      case 2:galleryImageAppend("sec3",val); break;
+      case 3:galleryImageAppend("sec4",val); break;
+    }
+  });
+}
 
 function  galleryImageAppend(secid,val){
   const secdiv =document.getElementById(secid);
@@ -41,3 +43,10 @@ function  galleryImageAppend(secid,val){
   span.textContent = val.title;
   secdiv.append(span);
 }
+
+ function  removeGalleryImages(){
+    const hero = document.getElementById("hero");
+    Array.from(hero).forEach(function(el){
+       el.innerHTML=" ";
+    });
+ }
