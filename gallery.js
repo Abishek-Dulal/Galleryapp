@@ -1,7 +1,7 @@
 "use strict"
 const api_key="f2345aa7d81b85b6865bc7698d7e6f06";
 const secret="9daf2cc6e1fa4be1";
-let currentvalue = "jessica nigri";
+let currentvalue = "christiano ronaldo";
 let page=1;
 async function fetchGalleryData(text,page,){
   let url=`https://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=${api_key}&format=json&text=${text}&page=${page}&per_page=50&nojsoncallback=1`;
